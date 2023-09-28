@@ -1,13 +1,16 @@
 
 require('dotenv')
 const http = require('http')
-const PORT: number = +process.env.PORT! || 6400
+require('dotenv').config()
 const fs = require('fs/promises')
 const { multiSplit } = require("./lib/multiSplit")
 const {parseURL } = require("./lib/parseURL")
 const {Database} = require("./lib/Database")
 
-http.createServer(async (req: Request, res: any) => {
+
+const PORT: number = +process.env.PORT! || 6400
+
+http.createServer(async (req: any, res: any) => {
 
   const [sanitizedURL,queries] = parseURL(req.url)
 
